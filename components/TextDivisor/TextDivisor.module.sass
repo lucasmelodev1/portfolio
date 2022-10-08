@@ -1,0 +1,23 @@
+@import "../../styles/variables"
+
+.TextDivisor
+  @include heading-6
+  font-size: 16px !important
+  display: flex
+  align-items: center
+  text-align: center
+  color: $primary-color
+  margin: 20px 0
+
+.TextDivisor::before,
+.TextDivisor::after
+  content: ''
+  flex: 1
+  border-bottom: 1px solid $primary-color
+
+.TextDivisor:not(:empty)::before
+  margin: 0 1.5em
+
+
+.TextDivisor:not(:empty)::after
+  margin: 0 1.5em
