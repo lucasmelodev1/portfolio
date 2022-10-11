@@ -5,7 +5,7 @@ import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
 import { gsap } from 'gsap'
 
 export default function Navigator() {
-  const { refs, refsReady } = useContext(RefContext);
+  const { refs } = useContext(RefContext);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollToPlugin)
@@ -26,17 +26,13 @@ export default function Navigator() {
   return (
     <div className={styles.Navigator}>
       <div className={styles.element} onClick={() => {
-        if(refsReady) {
-          // @ts-ignore
-          scrollTo(refs.about)
-        }
+        // @ts-ignore
+        scrollTo(refs.about)
       }}>WORK</div>
       <div className={styles.divisor}/>
       <div className={styles.element} onClick={() => {
-        if(refsReady) {
-          // @ts-ignore
-          scrollTo(refs.contact)
-        }
+        // @ts-ignore
+        scrollTo(refs.contact)
       }}>CONTACT</div>
     </div>
   )

@@ -20,9 +20,7 @@ export default function Hero() {
         repeat: -1
       }
     )
-  }, [cursor])
 
-  useEffect( () => {
     let masterTl = gsap.timeline({
       repeat: -1,
       repeatDelay: 1,
@@ -43,7 +41,7 @@ export default function Hero() {
       )
       masterTl.add(tl)
     })
-  }, [text, words])
+  }, [text, words, cursor])
 
   return (
     <div className={styles.Hero}>

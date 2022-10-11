@@ -5,7 +5,7 @@ import Hero from '../screens/Hero/Hero'
 import Contact from '../screens/Contact/Contact'
 import styles from '../styles/Home.module.sass'
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop'
-import {createContext, MutableRefObject, useEffect, useRef, useState} from "react";
+import {createContext, MutableRefObject, useRef} from "react";
 
 class IndexRef {
   about?: MutableRefObject<any>
@@ -18,21 +18,13 @@ class IndexRef {
 
 export const RefContext = createContext({
   refs: new IndexRef(),
-  refsReady: false,
-  setRefsReady: (ready: boolean) => {}
 })
 
 const Home: NextPage = () => {
   const aboutRef = useRef(null)
   const contactRef = useRef(null)
   const refs = new IndexRef(aboutRef, contactRef)
-  const [ refsReady, setRefsReady ] = useState(() => false)
-  const value = { refs, refsReady, setRefsReady }
-
-  useEffect(() => {
-    setRefsReady(true)
-  }, [aboutRef, contactRef]);
-
+  const value = { refs }
 
   return (
     <div className={styles.container}>
