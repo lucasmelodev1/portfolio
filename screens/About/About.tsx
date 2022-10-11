@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import AboutNavigator from '../../components/AboutNavigator/AboutNavigator'
 import styles from './About.module.sass'
 import ScrollableView from "../../components/ScrollableView/ScrollableView";
@@ -16,7 +16,6 @@ export default function About() {
     <div className={styles.About}>
       <h2 className={styles.title}>A bit about me</h2>
       <AboutContext.Provider value={value}>
-        <AboutNavigator/>
         <ScrollableView/>
       </AboutContext.Provider>
     </div>

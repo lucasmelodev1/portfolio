@@ -1,54 +1,70 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import styles from './ScrollableView.module.sass'
 import {AboutContext} from "../../screens/About/About";
-import Image from "next/image";
-import axios from 'axios'
-import TextDivisor from "../TextDivisor/TextDivisor";
+import AboutMe from "../AboutMe/AboutMe";
+import Github from "../Github/Github";
+import Resume from "../Resume/Resume";
+import autoAnimate from "@formkit/auto-animate";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { gsap } from 'gsap'
+import AboutNavigator from "../AboutNavigator/AboutNavigator";
 
 function ScrollableView() {
 	const { index, setIndex } = useContext(AboutContext)
-	const [ githubView, setGithubView ] = useState(() => <p>loading</p>)
+	const [ loaded, setLoaded ] = useState(() => false)
+	const pin = useRef(null)
+	const scrollable = useRef(null)
 
 	useEffect(() => {
-		const setView = async () => {
-			const res = await axios.get('https://api.github.com/users/musicianrpr')
-			const name = res.data.login
-			const bio = res.data.bio
-
-			setGithubView(
-				<>
-					<div className={styles.githubProfile}>
-						<div className={styles.githubImage}>
-							<Image src={res.data.avatar_url} alt={"avatar"} layout={"fill"} objectFit={"contain"}/>
-						</div>
-						<div className={styles.githubTextContent}>
-							<h4 className={styles.githubTitle}>{name}</h4>
-							<p className={styles.githubBio}>{bio}</p>
-						</div>
-					</div>
-					<TextDivisor text={"FAVORITE PROJECTS"}/>
-
-				</>
-			)
+		if(pin.current) {
+			autoAnimate(pin.current)
 		}
-		setView()
-	})
+		gsap.registerPlugin(ScrollTrigger)
+
+		let ctx = gsap.context(() => {
+			gsap.to(scrollable.current, {
+				scrollTrigger: {
+					trigger: pin.current,
+					toggleActions: "restart pause reverse pause",
+					start: 'top top',
+					end: () => {
+						// @ts-ignore
+						return `${scrollable.current.clientHeight}px center`
+					},
+					markers: true,
+					pin: true,
+					scrub: true
+				},
+			})
+		}, [pin, scrollable])
+		return () => ctx.revert()
+		// @ts-ignore
+	}, [index, scrollable, pin, loaded]);
+
+
 
 	const views = [
-		<>
-			{githubView}
-		</>,
-		<div key={1} className={styles.aboutMe}>
-			<p>1</p>
+		<div key={0} id={`div0`}>
+			<AboutContext.Provider value={{index, setIndex}}>
+				<Github ready={() => setLoaded(true)} mounted={() => setLoaded(false)}/>
+			</AboutContext.Provider>
 		</div>,
-		<div key={2} className={styles.resume}>
-			<p>2</p>
+		<div key={1} id={`div1`}>
+			<AboutMe/>
+		</div>,
+		<div key={2} id={`div2`}>
+			<Resume/>
 		</div>
 	]
 
-	return (
+	return(
 		<div className={styles.ScrollableView}>
-			{views[index]}
+			<div className={styles.pin} ref={pin}>
+				<AboutNavigator/>
+			</div>
+			<div className={styles.view} ref={scrollable}>
+				{views[index]}
+			</div>
 		</div>
 	);
 }

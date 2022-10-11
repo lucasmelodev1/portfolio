@@ -1,0 +1,28 @@
+@import "../../styles/variables"
+
+.profile
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 50px 0
+.title
+  @include heading-3
+  margin: 0
+.textContent
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: start
+.image
+  height: 220px
+  width: 220px
+  position: relative
+  border-radius: 50%
+  overflow: hidden
+  margin-right: 20px
+.bio
+  @include text
+  width: 250px
+.projects
+  display: flex
+  justify-content: space-evenly
