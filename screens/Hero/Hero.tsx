@@ -8,7 +8,7 @@ import { gsap } from 'gsap'
 export default function Hero() {
   const cursor = useRef(null)
   const text = useRef(null)
-  const words = ['A Developer.', 'A Good Teammate.', 'Your next co-worker.']
+  const words = ['A Front-end Developer.', 'A Good Teammate.', 'Your next co-worker.']
 
   useEffect(() => {
     gsap.registerPlugin(TextPlugin)
@@ -20,6 +20,9 @@ export default function Hero() {
         repeat: -1
       }
     )
+  }, [cursor])
+
+  useEffect( () => {
     let masterTl = gsap.timeline({
       repeat: -1,
       repeatDelay: 1,
@@ -40,7 +43,7 @@ export default function Hero() {
       )
       masterTl.add(tl)
     })
-  }, [text, cursor, words])
+  }, [text, words])
 
   return (
     <div className={styles.Hero}>
@@ -48,7 +51,7 @@ export default function Hero() {
       <div className={styles.titleDiv}>
         <h1 className={styles.title}>Lucas Gabriel</h1>
         <div>
-          <h2 className={styles.subtitle} ref={text}></h2>
+          <h2 className={styles.subtitle} ref={text}>~/</h2>
           <span className={styles.span} ref={cursor}>_</span>
         </div>
       </div>

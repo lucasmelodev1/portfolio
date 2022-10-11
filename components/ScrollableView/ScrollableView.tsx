@@ -31,7 +31,6 @@ function ScrollableView() {
 						// @ts-ignore
 						return `${scrollable.current.clientHeight}px center`
 					},
-					markers: true,
 					pin: true,
 					scrub: true
 				},
