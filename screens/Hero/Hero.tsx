@@ -4,6 +4,7 @@ import TextPlugin from 'gsap/dist/TextPlugin';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import styles from './Hero.module.sass'
 import { gsap, Power0 } from 'gsap'
+import Image from "next/image";
 
 export default function Hero() {
   const hero = useRef(null)
@@ -182,7 +183,8 @@ export default function Hero() {
           I am a developer with years of experience building websites from design to deploy. Living in Brazil, I work remotely to national and international companies to make their goals come true.
         </p>
       </div>
-      <div className={styles.background + ' ' + 'hero-background'} id="hero-background" />
+      <div className={styles.background + ' ' + 'hero-background'} id="hero-background">
+      </div>
       <div className={styles.background2 + ' ' + 'hero-background'} id="hero-background2" onMouseOver={() => {
         timeline.current.play()
       }} onMouseOut={() => {
