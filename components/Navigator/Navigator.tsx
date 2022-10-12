@@ -31,12 +31,6 @@ export default function Navigator() {
 
       return () => ctx.revert()
     })
-
-
-
-    return () => {
-
-    }
   }, [navigator]);
 
 

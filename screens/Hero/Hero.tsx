@@ -8,7 +8,7 @@ import { gsap, Power0 } from 'gsap'
 export default function Hero() {
   const hero = useRef(null)
   const timeline = useRef(gsap.timeline())
-  const words = ['A Developer.', 'A Leader.', 'Lucas Gabriel.']
+  const words = ['A Developer.', 'A Designer.', 'Lucas Gabriel.']
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -33,6 +33,11 @@ export default function Hero() {
         "#hero-navigator", {
           x: document.getElementById("hero-navigator")?.clientWidth,
           duration: .6
+        }, "<+=10%"
+      )
+      tl.to(
+        "#hero-navigator", {
+          display: 'none'
         }, "<+=10%"
       )
       tl.to(
@@ -78,7 +83,44 @@ export default function Hero() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
+    gsap.to(
+      "#hero-title-div", {
+        scrollTrigger: {
+          trigger: hero.current,
+          start: '300px top',
+          end: 'bottom top',
+          scrub: 1,
+          toggleActions: 'play none reverse pause',
+        },
+        x: `-${document.getElementById("hero-title-div")?.clientWidth}`,
+      }
+    )
 
+    gsap.to(
+      "#hero-navigator", {
+        scrollTrigger: {
+          trigger: hero.current,
+          start: 'center top',
+          end: 'bottom top',
+          scrub: 1,
+          toggleActions: 'play none reverse pause',
+        },
+        x: `${document.getElementById("hero-navigator")?.clientWidth}`,
+      }
+    )
+
+    gsap.to(
+      ".hero-background", {
+        scrollTrigger: {
+          trigger: hero.current,
+          start: 'center top',
+          end: 'bottom top',
+          scrub: 1,
+          toggleActions: 'play none reverse pause',
+        },
+        y: -window.innerHeight/2
+      }
+    )
   }, []);
 
 
@@ -140,8 +182,8 @@ export default function Hero() {
           I am a developer with years of experience building websites from design to deploy. Living in Brazil, I work remotely to national and international companies to make their goals come true.
         </p>
       </div>
-      <div className={styles.background} id="hero-background" />
-      <div className={styles.background2} id="hero-background2" onMouseOver={() => {
+      <div className={styles.background + ' ' + 'hero-background'} id="hero-background" />
+      <div className={styles.background2 + ' ' + 'hero-background'} id="hero-background2" onMouseOver={() => {
         timeline.current.play()
       }} onMouseOut={() => {
         if(timeline.current.totalProgress() > .95) {
