@@ -4,37 +4,71 @@
   height: 100vh
   width: 100%
   display: flex
-  flex-direction: column
-  justify-content: space-evenly
+  justify-content: space-between
   align-items: center
-  background-color: #121212
+  background-color: #0b0b0b
   opacity: 1
-  background-image:  linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077)
-  background-size: 28px 49px
-  background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px
+  background-image: radial-gradient(#161616 0.5px, $background-color 0.5px)
+  background-size: 10px 10px
 .titleDiv
   display: flex
   flex-direction: column
-  justify-content: center
-  align-items: center
+  height: 100%
+  align-items: start
+  padding: 5vw 5vw
 .title
   @include heading-1
   margin: 0
+  text-align: left
+  line-height: 1
+  z-index: 2
+.subtitleDiv
+  position: relative
+  z-index: 2
 .subtitle
-  @include heading-2
+  @include heading-1
   margin: 0
   display: inline
-  font-weight: 600
-  color: #ababab
+  font-size: 110px
+  color: $primary-color
+  line-height: 1
+  z-index: 2
 .span
   @include heading-2
   margin: 0
   color: #ababab
 .description
+  margin: 2em 0 0 0
+  color: #a1a1a1
+  text-align: start
+  font-weight: 300
+  font-size: 30px
+  font-family: $primary-font
+  max-width: 40%
+  z-index: 2
+.background, .background2
+  width: 15%
+  height: 90vh
+  overflow: hidden
+  position: absolute
+  right: 35%
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)
+.background
+  background: url("../../public/background.jpg") repeat 0 0 transparent
+  box-shadow: inset 0px 0px 16px 2px rgba(0,0,0,0.54)
+.background2
+  z-index: 2
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+.text
   @include heading-3
-  margin: 5px 0 0 0
-  color: darkgray
-  text-align: center
-  font-weight: 400
-  font-size: 24px
-  max-width: 60%
+  margin: 0
+.text2
+  @include heading-4
+  margin: 0
+.navigatorDiv
+  position: absolute
+  right: 0
+  padding-right: 6em
