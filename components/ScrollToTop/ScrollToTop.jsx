@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import styles from './ScrollToTop.module.sass'
 import Image from "next/image";
 import React from 'react';
-import autoAnimate from "@formkit/auto-animate";
 
 function ScrollButton() {
 	const [visible, setVisible] = useState(false)

@@ -4,7 +4,6 @@ import {AboutContext} from "../../screens/About/About";
 import AboutMe from "../AboutMe/AboutMe";
 import Github from "../Github/Github";
 import Resume from "../Resume/Resume";
-import autoAnimate from "@formkit/auto-animate";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { gsap } from 'gsap'
 import AboutNavigator from "../AboutNavigator/AboutNavigator";
@@ -16,9 +15,6 @@ function ScrollableView() {
 	const scrollable = useRef(null)
 
 	useEffect(() => {
-		if(pin.current) {
-			autoAnimate(pin.current)
-		}
 		gsap.registerPlugin(ScrollTrigger)
 
 		let ctx = gsap.context(() => {

@@ -1,6 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef} from 'react'
 import Navigator from '../../components/Navigator/Navigator'
 import TextPlugin from 'gsap/dist/TextPlugin';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import styles from './Hero.module.sass'
 import { gsap, Power0 } from 'gsap'
 
@@ -61,7 +62,7 @@ export default function Hero() {
       tl.to(
         "#hero-description", {
           text: "My passion is to study about mathematics, physics, psychology, music and software development. I am a very talkative person when in a deep discussion and around people I treasure.",
-          duration: 3
+          duration: 2
         }, "<+=10%"
       )
       tl.to(
@@ -73,6 +74,13 @@ export default function Hero() {
     })
     return () => ctx.revert()
   }, [])
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+
+  }, []);
+
 
   useEffect(() => {
     gsap.registerPlugin(TextPlugin)
@@ -122,7 +130,7 @@ export default function Hero() {
 
   return (
     <div className={styles.Hero} ref={hero}>
-      <div className={styles.titleDiv}>
+      <div className={styles.titleDiv} id="hero-title-div">
         <h1 className={styles.title}>Hi, {"I'm"}</h1>
         <div className={styles.subtitleDiv}>
           <span className={styles.subtitle} id="hero-text"></span>

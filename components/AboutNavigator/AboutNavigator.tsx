@@ -2,18 +2,10 @@ import React, {useContext, useEffect, useRef} from 'react'
 import styles from './AboutNavigator.module.sass'
 import {AboutContext} from "../../screens/About/About";
 import {Properties} from "csstype";
-import autoAnimate from "@formkit/auto-animate";
 
 export default function AboutNavigator() {
   const { index, setIndex } = useContext(AboutContext)
   const ref = useRef(null)
-
-  useEffect(() => {
-    if(ref.current) {
-      autoAnimate(ref.current)
-    }
-  }, [ref]);
-
 
   const getElementStyle = (itemIndex: number): Properties => {
     const selected: boolean = itemIndex == index
