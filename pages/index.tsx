@@ -5,26 +5,21 @@ import Hero from '../screens/Hero/Hero'
 import Contact from '../screens/Contact/Contact'
 import styles from '../styles/Home.module.sass'
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop'
-import {createContext, MutableRefObject, useRef} from "react";
+import {useEffect} from "react";
+import { gsap } from 'gsap'
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
-class IndexRef {
-  about?: MutableRefObject<any>
-  contact?: MutableRefObject<any>
-  constructor(about?: MutableRefObject<any>, contact?: MutableRefObject<any>) {
-    this.about = about
-    this.contact = contact
-  }
+export class NavigatorIds {
+  static about = 'about'
+  static work = 'work'
+  static contact = 'contact'
 }
 
-export const RefContext = createContext({
-  refs: new IndexRef(),
-})
-
 const Home: NextPage = () => {
-  const aboutRef = useRef(null)
-  const contactRef = useRef(null)
-  const refs = new IndexRef(aboutRef, contactRef)
-  const value = { refs }
+  gsap.registerPlugin(ScrollTrigger)
+  useEffect(() => {
+
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -33,13 +28,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <RefContext.Provider value={value}>
           <Hero/>
-        </RefContext.Provider>
-        <div className={styles.maxWidth} ref={aboutRef}>
+        <div className={styles.maxWidth} id={NavigatorIds.about}>
           <About/>
         </div>
-        <div className={styles.maxWidth} ref={contactRef}>
+        <div className={styles.maxWidth} id={NavigatorIds.work}>
+
+        </div>
+        <div className={styles.maxWidth} id={NavigatorIds.contact}>
           <Contact/>
         </div>
         <ScrollToTop/>

@@ -1,11 +1,10 @@
-import React, {MutableRefObject, Ref, useContext, useEffect, useRef} from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import styles from './Navigator.module.sass'
-import {RefContext} from "../../pages";
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
 import { gsap } from 'gsap'
+import {NavigatorIds} from "../../pages";
 
 export default function Navigator() {
-  const { refs } = useContext(RefContext);
   const navigator = useRef(null)
 
   useEffect(() => {
@@ -60,13 +59,13 @@ export default function Navigator() {
     )
   }
 
-  const scrollTo = (ref: MutableRefObject<any>) => {
+  const scrollTo = (id: string) => {
     gsap.to(
       // @ts-ignore
       window, {
         duration: 1,
         // @ts-ignore
-        scrollTo: ref.current,
+        scrollTo: `#${id}`,
         ease: 'power1.easeOut'
       }
     )
@@ -75,31 +74,35 @@ export default function Navigator() {
   return (
     <div className={styles.Navigator} ref={navigator}>
       <div className={styles.element}
-           id="element1"
-           onMouseOver={() => onMouseOver(1)}
-           onMouseOut={() => onMouseOut(1)}
-           onClick={() => {
-        // @ts-ignore
-        scrollTo(refs.about)
-      }}>
-        WORK
+        id="element1"
+        onMouseOver={() => onMouseOver(1)}
+        onMouseOut={() => onMouseOut(1)}
+        onClick={() => {
+          scrollTo(NavigatorIds.about)
+        }
+      }>
+        ABOUT
         <div className={styles.box} id="box1"/>
       </div>
       <div className={styles.element}
-           id="element2"
-           onMouseOver={() => onMouseOver(2)}
-           onMouseOut={() => onMouseOut(2)}>
-        ABOUT
+        id="element2"
+        onMouseOver={() => onMouseOver(2)}
+        onMouseOut={() => onMouseOut(2)}
+        onClick={() => {
+          scrollTo(NavigatorIds.work)
+        }
+      }>
+        WORK
         <div className={styles.box} id="box2"/>
       </div>
       <div className={styles.element + ' ' + styles.contact}
-           id="element3"
-           onMouseOver={() => onMouseOver(3)}
-           onMouseOut={() => onMouseOut(3)}
-           onClick={() => {
-        // @ts-ignore
-        scrollTo(refs.contact)
-      }}>
+        id="element3"
+        onMouseOver={() => onMouseOver(3)}
+        onMouseOut={() => onMouseOut(3)}
+        onClick={() => {
+          scrollTo(NavigatorIds.contact)
+        }
+      }>
         CONTACT
         <div className={styles.box} id="box3"/>
       </div>

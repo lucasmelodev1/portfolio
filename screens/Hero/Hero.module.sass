@@ -6,10 +6,6 @@
   display: flex
   justify-content: space-between
   align-items: center
-  background-color: #0b0b0b
-  opacity: 1
-  background-image: radial-gradient(#161616 0.5px, $background-color 0.5px)
-  background-size: 10px 10px
 .titleDiv
   display: flex
   flex-direction: column
@@ -44,7 +40,7 @@
   text-align: start
   font-weight: 300
   font-size: 30px
-  font-family: $primary-font
+  font-family: $secondary-font
   max-width: 40%
   z-index: 2
 .background, .background2
@@ -64,7 +60,8 @@
   justify-content: center
   align-items: center
 .text
-  @include heading-3
+  @include heading-4
+  font-size: 28px
   margin: 0
 .text2
   @include heading-4

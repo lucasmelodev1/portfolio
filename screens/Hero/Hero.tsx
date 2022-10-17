@@ -4,7 +4,6 @@ import TextPlugin from 'gsap/dist/TextPlugin';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import styles from './Hero.module.sass'
 import { gsap, Power0 } from 'gsap'
-import Image from "next/image";
 
 export default function Hero() {
   const hero = useRef(null)
@@ -63,6 +62,7 @@ export default function Hero() {
         "#hero-description", {
           color: '#FFFFFF',
           fontWeight: 400,
+          textShadow: '2px 2px rgba(0,0,0,.5)'
         }
       )
       tl.to(
@@ -188,7 +188,7 @@ export default function Hero() {
       <div className={styles.background2 + ' ' + 'hero-background'} id="hero-background2" onMouseOver={() => {
         timeline.current.play()
       }} onMouseOut={() => {
-        if(timeline.current.totalProgress() > .95) {
+        if(timeline.current.totalProgress() > .90) {
           timeline.current.reverse(2)
         } else {
           timeline.current.reverse()
